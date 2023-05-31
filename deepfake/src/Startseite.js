@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import myImage from './logoo.png';
 import './App.css';
 
 function Startseite() {
@@ -14,12 +15,15 @@ function Startseite() {
                 <h2 className="celebrity-talk">
                     Celebrity Talk!
                 </h2>
+                <img src={myImage} alt="Bildbeschreibung" />
             </div>
-            <Link to="/Introductionpage">
-                <button className="start-button">Start</button>
-            </Link>
-        </div>
-    );
+            <div className="button-container">
+        <Link to="/Introductionpage">
+          <button className="start-button">Start</button>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export default Startseite;
