@@ -1,20 +1,14 @@
 import './App.css';
-
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import Startseite from "./Startseite"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <br />
-        <br />
-        <h2 className="welcome-text">
-          Welcome to
-        </h2>
-        <h2 className="celebrity-talk">
-          Celebrity Talk!
-        </h2>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<Startseite/>} />
+    </Routes>
+    </BrowserRouter>
   );
 }
 
