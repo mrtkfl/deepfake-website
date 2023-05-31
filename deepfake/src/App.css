@@ -9,9 +9,38 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
   background-color: #F2F6FF;
 }
 
+.App-header img {
+  width: 100%; 
+  height: auto; 
+  margin-top: 70px;
+}
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.start-button {
+  align-items: center;
+  background-color: #6F00FF;
+  border-radius: 30px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  justify-content: center;
+  margin-top: 80px;
+  padding: 0.8rem 2.8rem;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+}
