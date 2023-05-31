@@ -1,0 +1,17 @@
+.welcome-text {
+  font-weight: 300; 
+  margin-bottom: -20px;
+  padding-left: 30px;
+}
+
+.celebrity-talk {
+  padding-left: 30px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F2F6FF;
+}
+
+
