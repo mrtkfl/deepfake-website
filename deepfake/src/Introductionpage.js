@@ -40,7 +40,7 @@ function Simple () {
       <h1>Celebrity Talk</h1>
       <div className='cardContainer'>
         {characters.map((character) =>
-          <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+          <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)} preventSwipe={['up', 'down']}>
             <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
               <h3>{character.name}</h3>
             </div>
