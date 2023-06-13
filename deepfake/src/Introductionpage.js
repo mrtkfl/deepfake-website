@@ -2,66 +2,88 @@ import React, { useState } from 'react'
 import TinderCard from 'react-tinder-card'
 
 const db = [
-  {
-    name: 'Richard Hendricks',
-    url: './img/Bild.png',
-    audioo: './audio/my-audio-file.mp3'
-  },
-  {
-    name: 'Jared Dunn',
-    url: './img/Bild.png',
-    audioo: './audio/Andrew.mp3'
-  }
+    {
+        name: 'Angela Merkel',
+        url: './img/Bild.png',
+        audioo: './audio/my-audio-file.mp3',
+        art: true
+    },
+    {
+        name: 'Andrew Tate',
+        url: './img/Andrew.jpeg',
+        audioo: './audio/Andrew.mp3',
+        art: true
+    },
+    {
+        name: 'Start',
+        url: './img/start.png',
+        art: true
+    }
 ]
 
-function Simple () {
-  const characters = db
-  const [lastDirection, setLastDirection] = useState()
+function Simple() {
+    const characters = db
+    const [lastDirection, setLastDirection] = useState()
+    const [score, setScore] = useState(0)
+    const [remainingCards, setRemainingCards] = useState(characters.length)
 
-  const swiped = (direction, character) => {
-    console.log('removing: ' + character.name)
-    setLastDirection(direction)
-    setTimeout(() => {
-      const audio = new Audio(character.audioo);
-      audio.play();
-    }, 2000);
-  }
+    const swiped = (direction, character, index) => {
+        console.log('removing: ' + character.name)
+        setLastDirection(direction)
 
-//   const swiped = (direction, nameToDelete) => {
-//     console.log('removing: ' + nameToDelete)
-//     setLastDirection(direction)
-//   }
+        if ((direction === 'right' && character.art) || (direction === 'left' && !character.art)) {
+            setScore(score + 1)
+        }
+        setRemainingCards(remainingCards - 1)
 
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!')
-  }
+        setTimeout(() => {
+            if (index > 0) {
+                const audio = new Audio(characters[index - 1].audioo);
+                audio.play();
+            }
+        }, 1000);
+    }
 
-  return (
-    <div>
-      <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
-      <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-      <h1>Celebrity Talk</h1>
-      <div className='cardContainer'>
-        {characters.map((character) =>
-          <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character)} 
-          onCardLeftScreen={() => outOfFrame(character.name)} preventSwipe={['up', 'down']}>
+    const outOfFrame = (name) => {
+        console.log(name + ' left the screen!')
+    }
 
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-              <h3>{character.name}</h3>
+    return (
+        <div>
+            <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
+            <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
+            <h1>Celebrity Talk</h1>
+            <div className='cardContainer'>
+                {characters.map((character, index) =>
+                    <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character, index)}
+                        onCardLeftScreen={() => outOfFrame(character.name)} preventSwipe={['up', 'down']}>
+
+                        <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
+                            <h3>{character.name}</h3>
+                        </div>
+
+                        <div>
+                            <audio className='audios'>
+                                <source src={character.audioo} type="audio/mpeg" />
+                            </audio>
+
+                        </div>
+                    </TinderCard>
+                )}
             </div>
-
-            <div>
-            <audio className='audios'>
-                <source src={character.audioo} type="audio/mpeg" />
-            </audio>
-
-            </div>
-          </TinderCard>
-        )}
-      </div>
-      {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
-    </div>
-  )
+            {remainingCards === 0 ? (
+                <h2 className='infoText'>Final Score: {score}</h2>
+            ) : lastDirection ? (
+                lastDirection === 'right' ? (
+                    <h2 className='infoText'>Echtes Zitat</h2>
+                ) : (
+                    <h2 className='infoText'>Falsches Zitat</h2>
+                )
+            ) : (
+                <h2 className='infoText' />
+            )}
+        </div>
+    )
 }
 
 export default Simple
