@@ -129,9 +129,18 @@ h2 {
 
 .card h3 {
   position: absolute;
-  bottom: 0;
+  top: 80%;
   margin: 10px;
   color: #fff;
+  font-size: 24px;
+}
+
+.card h4 {
+  position: absolute;
+  top: 88%;
+  margin: 10px;
+  color: white;
+  font-size: 18px;
 }
 
 .infoText {
@@ -187,4 +196,13 @@ h2 {
 .audios{
     display: none;
 }
+
+.cardText {
+  font-size: 18px;
+  text-align: center;
+  margin: 10px;
+}
+
+
+
 

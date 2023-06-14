@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 
 const db = [
@@ -6,36 +6,42 @@ const db = [
         name: 'Karl Lauterbach',
         url: './img/Karl.jpeg',
         audioo: './audio/Karl.mp3',
-        art: true
+        art: true,
+        text: "Ich habe echt keinen Bock mehr."
     },
     {
         name: 'Joe Biden',
         url: './img/Joe.jpeg',
         audioo: './audio/Joe.mp3',
-        art: true
-    },
-    {
-        name: 'Bernd das Brot',
-        url: './img/Bernd.avif',
-        audioo: './audio/Bernd.mp3',
-        art: true
+        art: true,
+        text: "Ich habe echt keinen Bock mehr."
     },
     {
         name: 'Donald Trump',
         url: './img/Donald.jpeg',
         audioo: './audio/Donald.mp3',
-        art: true
+        art: true,
+        text: "Ich habe echt keinen Bock mehr."
     },
     {
         name: 'Angela Merkel',
         url: './img/Angela.jpeg',
         audioo: './audio/Angela.mp3',
-        art: true
+        art: true,
+        text: "Ich habe echt keinen Bock mehr."
+    },
+    {
+        name: 'Bernd das Brot',
+        url: './img/Bernd.png',
+        audioo: './audio/Bernd.mp3',
+        art: true,
+        text: "Es gibt ein Brot das ich hasse und das ist Toastbrot."
     },
     {
         name: 'Start',
         url: './img/start.png',
-        art: true
+        art: true,
+        text: "Ich habe echt keinen Bock mehr."
     }
 ]
 
@@ -45,6 +51,9 @@ function Simple() {
     const [score, setScore] = useState(0)
     const [remainingCards, setRemainingCards] = useState(characters.length)
     const [currentIndex, setCurrentIndex] = useState(0)
+    
+    // Create an audio object using the useRef hook
+    const audioRef = useRef(new Audio())
 
     const swiped = (direction, character, index) => {
         console.log('removing: ' + character.name)
@@ -58,10 +67,15 @@ function Simple() {
 
         setTimeout(() => {
             if (index > 0) {
-                const audio = new Audio(characters[index - 1].audioo);
-                audio.play();
+                // Use the current property of the audioRef to access the audio object and update its src property
+                audioRef.current.src = characters[index - 1].audioo;
+                
+                // Add an event listener for the canplaythrough event and start playback when the event is triggered
+                audioRef.current.addEventListener('canplaythrough', () => {
+                    audioRef.current.play();
+                });
             }
-        }, 1000);
+        }, 1500);
     }
 
     const outOfFrame = (name) => {
@@ -70,8 +84,8 @@ function Simple() {
 
     const playAudio = () => {
         if (currentIndex > 0) {
-            const audio = new Audio(characters[currentIndex - 1].audioo);
-            audio.play();
+            // Use the current property of the audioRef to access the audio object and play it
+            audioRef.current.play();
         }
     }
 
@@ -87,6 +101,8 @@ function Simple() {
 
                         <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
                             <h3>{character.name}</h3>
+                            {/* Add a text field that displays the content of the text variable */}
+                            <h4>{character.text}</h4>
                         </div>
 
                         <div>
@@ -107,7 +123,7 @@ function Simple() {
                     <h2 className='infoText'>Falsches Zitat</h2>
                 )
             ) : (
-                <h2 className='infoText' />
+                <h2 className='infoText'>Text</h2>
             )}
             {currentIndex > 0 && characters[currentIndex - 1].audioo && (
                 <button onClick={() => playAudio()}>Play Audio</button>
