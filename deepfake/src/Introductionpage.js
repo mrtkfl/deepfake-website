@@ -3,15 +3,33 @@ import TinderCard from 'react-tinder-card'
 
 const db = [
     {
-        name: 'Angela Merkel',
-        url: './img/Bild.png',
-        audioo: './audio/my-audio-file.mp3',
+        name: 'Karl Lauterbach',
+        url: './img/Karl.jpeg',
+        audioo: './audio/Karl.mp3',
         art: true
     },
     {
-        name: 'Andrew Tate',
-        url: './img/Andrew.jpeg',
-        audioo: './audio/Andrew.mp3',
+        name: 'Joe Biden',
+        url: './img/Joe.jpeg',
+        audioo: './audio/Joe.mp3',
+        art: true
+    },
+    {
+        name: 'Bernd das Brot',
+        url: './img/Bernd.avif',
+        audioo: './audio/Bernd.mp3',
+        art: true
+    },
+    {
+        name: 'Donald Trump',
+        url: './img/Donald.jpeg',
+        audioo: './audio/Donald.mp3',
+        art: true
+    },
+    {
+        name: 'Angela Merkel',
+        url: './img/Angela.jpeg',
+        audioo: './audio/Angela.mp3',
         art: true
     },
     {
@@ -26,6 +44,7 @@ function Simple() {
     const [lastDirection, setLastDirection] = useState()
     const [score, setScore] = useState(0)
     const [remainingCards, setRemainingCards] = useState(characters.length)
+    const [currentIndex, setCurrentIndex] = useState(0)
 
     const swiped = (direction, character, index) => {
         console.log('removing: ' + character.name)
@@ -35,6 +54,7 @@ function Simple() {
             setScore(score + 1)
         }
         setRemainingCards(remainingCards - 1)
+        setCurrentIndex(index)
 
         setTimeout(() => {
             if (index > 0) {
@@ -46,6 +66,13 @@ function Simple() {
 
     const outOfFrame = (name) => {
         console.log(name + ' left the screen!')
+    }
+
+    const playAudio = () => {
+        if (currentIndex > 0) {
+            const audio = new Audio(characters[currentIndex - 1].audioo);
+            audio.play();
+        }
     }
 
     return (
@@ -81,6 +108,9 @@ function Simple() {
                 )
             ) : (
                 <h2 className='infoText' />
+            )}
+            {currentIndex > 0 && characters[currentIndex - 1].audioo && (
+                <button onClick={() => playAudio()}>Play Audio</button>
             )}
         </div>
     )
