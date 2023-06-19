@@ -126,7 +126,7 @@ function Simple() {
                 <h2 className='infoText'>Text</h2>
             )}
             {currentIndex > 0 && characters[currentIndex - 1].audioo && (
-                <button onClick={() => playAudio()}>Play Audio</button>
+                <button classname="audio-button" onClick={() => playAudio()}>Play Audio</button>
             )}
         </div>
     )
