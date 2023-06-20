@@ -1,5 +1,9 @@
 import React, { useState, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
+import './App.css';
+import { Link } from 'react-router-dom';
+
+
 
 const db = [
     {
@@ -123,12 +127,18 @@ function Simple() {
                     <h2 className='infoText'>Falsches Zitat</h2>
                 )
             ) : (
-                <h2 className='infoText'>Text</h2>
+                <h2 className='infoText'> ◀Real or Fake▶</h2>
             )}
             {currentIndex > 0 && characters[currentIndex - 1].audioo && (
-                <button classname="audio-button" onClick={() => playAudio()}>Play Audio</button>
+                <button className="audio-button" onClick={() => playAudio()}>Play Audio</button>
             )}
+            <div>
+                <Link to="/">
+                    <button className="start-button">Restart</button>
+                </Link>
+            </div>
         </div>
+        
     )
 }
 

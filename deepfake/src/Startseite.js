@@ -18,8 +18,8 @@ function Startseite() {
                 <img src={myImage} alt="Bildbeschreibung" />
             </div>
             <div className="button-container">
-        <Link to="/Introductionpage">
-          <button className="start-button">Start</button>
+        <Link to="/sec_page">
+          <button className="start-button">Weiter</button>
         </Link>
       </div>
     </div>
