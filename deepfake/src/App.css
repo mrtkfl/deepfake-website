@@ -115,14 +115,11 @@ body {
 h1 {
   color: rgb(0, 0, 0);
   text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+  font-size: 80;
 }
 
 h2 {
   color: #fff;
-}
-
-.NameText {
-  font-size: 80px;
 }
 
 .explanation-text {
@@ -169,7 +166,7 @@ h2 {
   top: 80%;
   margin: 10px;
   color: #fff;
-  font-size: 24px;
+  font-size: 60px;
 }
 
 .card h4 {
@@ -177,7 +174,7 @@ h2 {
   top: 88%;
   margin: 10px;
   color: white;
-  font-size: 18px;
+  font-size: 40px;
 }
 
 .infoText {
@@ -260,9 +257,23 @@ h2 {
   border: 0;
 } */
 .audio-button {
-    background-color: #6F00FF;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+  align-items: center;
+  background-color: #6F00FF;
+  border-radius: 90px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Inter,sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  justify-content: center;
+  padding: 2rem 6.8rem;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  margin-bottom: 50px;
+  }
+
+  .CT {
+    font-size: 80;
   }
