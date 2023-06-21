@@ -66,7 +66,9 @@ function Simple() {
         setLastValue(character.art)
     
         if ((direction === 'right' && character.art) || (direction === 'left' && !character.art)) {
-            setScore(score + 1)
+            if (character.name !== 'Start') {
+                setScore(score + 1)
+            }
         }
         setRemainingCards(remainingCards - 1)
         setCurrentIndex(index)
