@@ -9,12 +9,16 @@ function Sec_page() {
                 <br />
                 <br />
                 <h2 className="welcome-text">
-                    Swipe left if you think its a real quoat 
-                    <br></br>
-                    and right if you think its fake
+                    Willkommen zu Celebritytalk.
                     <br></br>
                     <br></br>
-                    your points will be shown at the end of the game
+                    Kannst du Echt von Fake unterscheiden? 
+                    <br></br>
+                    <br></br>
+                    Wische nach rechts, wenn du denkst es ist ein echtes Zitat.
+                    <br></br>
+                    <br></br>
+                    Und wische nach links, wenn du denkst es ist ein Fake Zitat.
                 </h2>
                 </div>
                 <div className="button-container">

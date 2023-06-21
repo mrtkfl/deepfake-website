@@ -45,7 +45,7 @@ const db = [
         name: 'Start',
         url: './img/start.png',
         art: true,
-        text: "Ich habe echt keinen Bock mehr."
+        text: "Es geht"
     }
 ]
 
@@ -64,7 +64,9 @@ function Simple() {
         setLastDirection(direction)
 
         if ((direction === 'right' && character.art) || (direction === 'left' && !character.art)) {
-            setScore(score + 1)
+            if (character.name !== 'Start') {
+                setScore(score + 1)
+            }
         }
         setRemainingCards(remainingCards - 1)
         setCurrentIndex(index)
