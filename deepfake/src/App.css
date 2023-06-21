@@ -121,6 +121,10 @@ h2 {
   color: #fff;
 }
 
+.NameText {
+  font-size: 80px;
+}
+
 .explanation-text {
   color: black;
   font-size: 40px;

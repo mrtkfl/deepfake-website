@@ -108,9 +108,9 @@ function Simple() {
                         onCardLeftScreen={() => outOfFrame(character.name)} preventSwipe={['up', 'down']}>
 
                         <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-                            <h3>{character.name}</h3>
+                            <h3 className="NameText">{character.name}</h3>
                             {/* Add a text field that displays the content of the text variable */}
-                            <h4>{character.text}</h4>
+                            <h4 className="ZitatText">{character.text}</h4>
                         </div>
 
                         <div>
