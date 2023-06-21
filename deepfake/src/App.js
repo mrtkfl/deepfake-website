@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Startseite from "./Startseite";
-import Introductionpage from "./Introductionpage";
+import Introductionpage from "./Game";
 import Sec_page from "./sec_page";
 
 function App() {
