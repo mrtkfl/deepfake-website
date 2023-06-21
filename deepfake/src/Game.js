@@ -31,7 +31,7 @@ const db = [
         name: 'Angela Merkel',
         url: './img/Angela.jpeg',
         audioo: './audio/Angela.mp3',
-        art: true,
+        art: false,
         text: "Ich habe echt keinen Bock mehr."
     },
     {
@@ -44,7 +44,7 @@ const db = [
     {
         name: 'Start',
         url: './img/start.png',
-        art: true,
+        art: undefined,
         text: "Ich habe echt keinen Bock mehr."
     }
 ]
@@ -55,6 +55,7 @@ function Simple() {
     const [score, setScore] = useState(0)
     const [remainingCards, setRemainingCards] = useState(characters.length)
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [lastValue, setLastValue] = useState()
     
     // Create an audio object using the useRef hook
     const audioRef = useRef(new Audio())
@@ -62,13 +63,14 @@ function Simple() {
     const swiped = (direction, character, index) => {
         console.log('removing: ' + character.name)
         setLastDirection(direction)
-
+        setLastValue(character.art)
+    
         if ((direction === 'right' && character.art) || (direction === 'left' && !character.art)) {
             setScore(score + 1)
         }
         setRemainingCards(remainingCards - 1)
         setCurrentIndex(index)
-
+    
         setTimeout(() => {
             if (index > 0) {
                 // Use the current property of the audioRef to access the audio object and update its src property
@@ -120,15 +122,15 @@ function Simple() {
             </div>
             {remainingCards === 0 ? (
                 <h2 className='infoText'>Final Score: {score}</h2>
-            ) : lastDirection ? (
-                lastDirection === 'right' ? (
-                    <h2 className='infoText'>Echtes Zitat</h2>
+                ) : lastValue !== undefined ? (
+                    lastValue === true ? (
+                        <h2 className='infoText'>Das letzte, war ein echtes Zitat</h2>
+                    ) : (
+                        <h2 className='infoText'>Das letzte, war ein falsches Zitat</h2>
+                    )
                 ) : (
-                    <h2 className='infoText'>Falsches Zitat</h2>
-                )
-            ) : (
-                <h2 className='infoText'> ◀Real or Fake▶</h2>
-            )}
+                    <h2 className='infoText'> ◀Real or Fake▶</h2>
+                )}
             {currentIndex > 0 && characters[currentIndex - 1].audioo && (
                 <button className="audio-button" onClick={() => playAudio()}>Play Audio</button>
             )}
