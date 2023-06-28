@@ -101,7 +101,6 @@ function Simple() {
         <div>
             <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
             <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-            <h1>Celebrity Talk</h1>
             <div className='cardContainer'>
                 {characters.map((character, index) =>
                     <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character, index)}
