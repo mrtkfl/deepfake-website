@@ -1,8 +1,10 @@
 .welcome-text {
   font-weight: 300; 
-  font-size: 80px;
+  font-size: 70px;
   color: black;
   margin-top: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .celebrity-talk {
@@ -175,6 +177,7 @@ h2 {
   margin: 40px;
   color: white;
   font-size: 45px;
+  text-align: left;
 }
 
 .infoText {

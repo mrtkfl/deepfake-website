@@ -130,7 +130,7 @@ function Simple() {
                         <h2 className='infoText'>Das letzte, war ein falsches Zitat</h2>
                     )
                 ) : (
-                    <h2 className='infoText'> ◀Fake oder Echt▶</h2>
+                    <h2 className='infoText'></h2>
                 )}
             {currentIndex > 0 && characters[currentIndex - 1].audioo && (
                 <button className="audio-button" onClick={() => playAudio()}>Play Audio</button>
