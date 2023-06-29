@@ -22,7 +22,7 @@ function Sec_page() {
                 </h2>
                 </div>
                 <div className="button-container">
-        <Link to="/Introductionpage">
+        <Link to="/Spiel">
           <button className="start-button">Start</button>
         </Link>
       </div>

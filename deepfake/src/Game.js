@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 import './App.css';
-import { Link } from 'react-router-dom';
-
-
+import { Link, useNavigate } from 'react-router-dom';
 
 const db = [
     {
@@ -50,13 +48,14 @@ const db = [
 ]
 
 function Simple() {
+    const navigate = useNavigate()
     const characters = db
     const [lastDirection, setLastDirection] = useState()
     const [score, setScore] = useState(0)
     const [remainingCards, setRemainingCards] = useState(characters.length)
     const [currentIndex, setCurrentIndex] = useState(0)
     const [lastValue, setLastValue] = useState()
-    
+
     // Create an audio object using the useRef hook
     const audioRef = useRef(new Audio())
 
@@ -64,7 +63,7 @@ function Simple() {
         console.log('removing: ' + character.name)
         setLastDirection(direction)
         setLastValue(character.art)
-    
+
         if ((direction === 'right' && character.art) || (direction === 'left' && !character.art)) {
             if (character.name !== 'Start') {
                 setScore(score + 1)
@@ -72,18 +71,23 @@ function Simple() {
         }
         setRemainingCards(remainingCards - 1)
         setCurrentIndex(index)
-    
+
         setTimeout(() => {
             if (index > 0) {
                 // Use the current property of the audioRef to access the audio object and update its src property
                 audioRef.current.src = characters[index - 1].audioo;
-                
+
                 // Add an event listener for the canplaythrough event and start playback when the event is triggered
                 audioRef.current.addEventListener('canplaythrough', () => {
                     audioRef.current.play();
                 });
             }
         }, 1500);
+
+        console.log(remainingCards)
+        if (remainingCards === 1) {
+            navigate('/final-score', { state: { score: score } })
+        }
     }
 
     const outOfFrame = (name) => {
@@ -123,25 +127,25 @@ function Simple() {
             </div>
             {remainingCards === 0 ? (
                 <h2 className='infoText'>Final Score: {score}</h2>
-                ) : lastValue !== undefined ? (
-                    lastValue === true ? (
-                        <h2 className='infoText'>Das letzte, war ein echtes Zitat</h2>
-                    ) : (
-                        <h2 className='infoText'>Das letzte, war ein falsches Zitat</h2>
-                    )
+            ) : lastValue !== undefined ? (
+                lastValue === true ? (
+                    <h2 className='infoText'>Das letzte, war ein echtes Zitat</h2>
                 ) : (
-                    <h2 className='infoText'></h2>
-                )}
+                    <h2 className='infoText'>Das letzte, war ein falsches Zitat</h2>
+                )
+            ) : (
+                <h2 className='infoText'></h2>
+            )}
             {currentIndex > 0 && characters[currentIndex - 1].audioo && (
                 <button className="audio-button" onClick={() => playAudio()}>Play Audio</button>
             )}
             <div>
                 <Link to="/">
-                    <button className="start-button">Restart</button>
+                    <button className="start-button">Neustart</button>
                 </Link>
             </div>
         </div>
-        
+
     )
 }
 
