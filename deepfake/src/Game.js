@@ -42,10 +42,10 @@ const db = [
         text: "Es gibt ein Brot das ich hasse und das ist Toastbrot."
     },
     {
-        name: 'Start',
-        url: './img/start.png',
+        name: '',
+        url: './img/startscreen.png',
         art: undefined,
-        text: "Ich habe echt keinen Bock mehr."
+        text: ""
     }
 ]
 
