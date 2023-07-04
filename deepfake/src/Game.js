@@ -3,53 +3,31 @@ import TinderCard from 'react-tinder-card'
 import './App.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-const db = [
-    {
-        name: 'Karl Lauterbach',
-        url: './img/Karl.jpeg',
-        audioo: './audio/Karl.mp3',
-        art: true,
-        text: "Ich habe echt keinen Bock mehr."
-    },
-    {
-        name: 'Joe Biden',
-        url: './img/Joe.jpeg',
-        audioo: './audio/Joe.mp3',
-        art: true,
-        text: "Ich habe echt keinen Bock mehr."
-    },
-    {
-        name: 'Donald Trump',
-        url: './img/Donald.jpeg',
-        audioo: './audio/Donald.mp3',
-        art: true,
-        text: "Ich habe echt keinen Bock mehr."
-    },
-    {
-        name: 'Angela Merkel',
-        url: './img/Angela.jpeg',
-        audioo: './audio/Angela.mp3',
-        art: false,
-        text: "Ich habe echt keinen Bock mehr."
-    },
-    {
-        name: 'Bernd das Brot',
-        url: './img/Bernd.png',
-        audioo: './audio/Bernd.mp3',
-        art: true,
-        text: "Es gibt ein Brot das ich hasse und das ist Toastbrot."
-    },
-    {
-        name: '',
-        url: './img/startscreen.png',
-        art: undefined,
-        text: ""
+import { db } from './data.js'
+
+function getCards(db) {
+    // Find the card with art: undefined
+    const startCard = db.find(card => card.art === undefined);
+    // Filter out the start card from the rest of the cards
+    const otherCards = db.filter(card => card.art !== undefined);
+
+    let selectedCards;
+    if (otherCards.length <= 10) {
+        // If there are 10 or fewer cards, use all of them
+        selectedCards = otherCards;
+    } else {
+        // If there are more than 10 cards, select 10 random cards
+        const shuffled = otherCards.sort(() => 0.5 - Math.random());
+        selectedCards = shuffled.slice(0, 10);
     }
-]
+
+    // Return the selected cards in reverse order, followed by the start card
+    return [...selectedCards.reverse(), startCard];
+}
 
 function Simple() {
     const navigate = useNavigate()
-    const characters = db
+    const [characters, setCharacters] = useState(getCards(db));
     const [lastDirection, setLastDirection] = useState()
     const [score, setScore] = useState(0)
     const [remainingCards, setRemainingCards] = useState(characters.length)
@@ -72,8 +50,11 @@ function Simple() {
         setRemainingCards(remainingCards - 1)
         setCurrentIndex(index)
 
+        // Update the characters state to remove the swiped card
+        setCharacters(characters => characters.filter(c => c.name !== character.name));
+
         setTimeout(() => {
-            if (index > 0) {
+            if (index > 0 && characters[index - 1]) {
                 // Use the current property of the audioRef to access the audio object and update its src property
                 audioRef.current.src = characters[index - 1].audioo;
 
@@ -109,18 +90,18 @@ function Simple() {
                 {characters.map((character, index) =>
                     <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character, index)}
                         onCardLeftScreen={() => outOfFrame(character.name)} preventSwipe={['up', 'down']}>
-
+    
                         <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
                             <h3 className="NameText">{character.name}</h3>
                             {/* Add a text field that displays the content of the text variable */}
                             <h4 className="ZitatText">{character.text}</h4>
                         </div>
-
+    
                         <div>
                             <audio className='audios'>
                                 <source src={character.audioo} type="audio/mpeg" />
                             </audio>
-
+    
                         </div>
                     </TinderCard>
                 )}
@@ -136,17 +117,18 @@ function Simple() {
             ) : (
                 <h2 className='infoText'></h2>
             )}
-            {currentIndex > 0 && characters[currentIndex - 1].audioo && (
-                <button className="audio-button" onClick={() => playAudio()}>Play Audio</button>
-            )}
-            <div>
+            {/* Wrap the buttons in a div with the class "buttons" */}
+            <div className="buttonsnext">
+                {currentIndex > 0 && characters[currentIndex - 1].audioo && (
+                    <button className="audio-button" onClick={() => playAudio()}>Play Audio</button>
+                )}
                 <Link to="/">
                     <button className="start-button">Neustart</button>
                 </Link>
             </div>
         </div>
-
+    
     )
-}
-
-export default Simple
+    }
+    
+    export default Simple
