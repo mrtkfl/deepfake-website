@@ -237,10 +237,94 @@ export const db = [
         text: "Vanilla Ice Cream is the fucking best."
     },
     {
+        name: 'Dieter Bohlen',
+        url: './img/Dieter.png',
+        audioo: './audio/Real/DBR-1.wav',
+        art: true,
+        text: "Wisst ihr was der unterschied ist zwischen eurer Stimme und einem Eimer Scheiße? Der Eimer!"
+    },
+    {
+        name: 'Dieter Bohlen ',
+        url: './img/Dieter.png',
+        audioo: './audio/Real/DBR-2.wav',
+        art: true,
+        text: "Einzige was du mit deinen Stimmebändern machen kannst, ist sie in Säure zu schmeißen, dann haben wir ein gelößtes Problem."
+    },
+    {
+        name: 'Dieter Bohlen  ',
+        url: './img/Dieter.png',
+        audioo: './audio/Real/DBR-3.wav',
+        art: true,
+        text: "Deine Stimme ist auch interessant, aber eher für die Lärm Forschung."
+    },
+    {
+        name: 'Dieter Bohlen   ',
+        url: './img/Dieter.png',
+        audioo: './audio/Fake/DBF-1.wav',
+        art: false,
+        text: "Alter, du kannst ja mal gar nichts."
+    },
+    {
+        name: 'Dieter Bohlen    ',
+        url: './img/Dieter.png',
+        audioo: './audio/Fake/DBF-2.wav',
+        art: false,
+        text: "Flo, du tanzt wie ein behinderter Storch."
+    },
+    {
+        name: 'Dieter Bohlen     ',
+        url: './img/Dieter.png',
+        audioo: './audio/Fake/DBF-3.wav',
+        art: false,
+        text: "Döner ist wirklich eine ekelhafte Scheiße."
+    },
+    {
         name: 'Barack Obama',
         url: './img/Obama.png',
-        audioo: './audio/Fake/JBF-3.wav',
+        audioo: './audio/Real/BOR-1.wav',
+        art: true,
+        text: "I wanna espacially thank, all the members who took a break from their exhausting schedule of not passing any laws, to be here tonight."
+    },
+    {
+        name: 'Barack Obama ',
+        url: './img/Obama.png',
+        audioo: './audio/Real/BOR-2.wav',
+        art: true,
+        text: "4 Years later, she won't stop drunk texting me from Carthahena."
+    },
+    {
+        name: 'Barack Obama  ',
+        url: './img/Obama.png',
+        audioo: './audio/Real/BOR-3.wav',
+        art: true,
+        text: "Whats the difference between a hockey mom and a Pitbull? The Pitbull is delicous."
+    },
+    {
+        name: 'Barack Obama   ',
+        url: './img/Obama.png',
+        audioo: './audio/Fake/BOF-1.wav',
         art: false,
-        text: "Vanilla Ice Cream is the fucking best."
+        text: "It becomey clear, that Joe Biden is an old senile man."
+    },
+    {
+        name: 'Barack Obama    ',
+        url: './img/Obama.png',
+        audioo: './audio/Fake/BOF-2.wav',
+        art: false,
+        text: "President Trump, is a total and complete dipshit."
+    },
+    {
+        name: 'Barack Obama     ',
+        url: './img/Obama.png',
+        audioo: './audio/Fake/BOF-3.wav',
+        art: false,
+        text: "Or wether we become some kind of fucked up dystopia."
+    },
+    {
+        name: 'Barack Obama      ',
+        url: './img/Obama.png',
+        audioo: './audio/Fake/BOF-4.wav',
+        art: false,
+        text: "Stay woke bitches."
     },
 ]

@@ -69,7 +69,7 @@ function Simple() {
                     audioRef.current.play();
                 });
             }
-        }, 1500);
+        }, 100);
     
         console.log(remainingCards)
         if (remainingCards === 1) {

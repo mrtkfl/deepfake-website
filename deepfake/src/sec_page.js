@@ -21,7 +21,7 @@ function Sec_page() {
           Und wische nach links, wenn du denkst es ist ein Fake Zitat.
           <br></br>
           <br></br>
-          Es gibt 6 Runden, versuche so viele Punkte wie möglich zu sammeln.
+          Es gibt 8 Runden, versuche so viele Punkte wie möglich zu sammeln.
         </h2>
       </div>
       <div className="buttombutton">
