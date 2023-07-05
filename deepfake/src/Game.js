@@ -11,19 +11,23 @@ function getCards(db) {
     // Filter out the start card from the rest of the cards
     const otherCards = db.filter(card => card.art !== undefined);
 
-    let selectedCards;
-    if (otherCards.length <= 10) {
-        // If there are 10 or fewer cards, use all of them
-        selectedCards = otherCards;
-    } else {
-        // If there are more than 10 cards, select 10 random cards
-        const shuffled = otherCards.sort(() => 0.5 - Math.random());
-        selectedCards = shuffled.slice(0, 10);
-    }
+    // Group cards by name
+    const groupedCards = otherCards.reduce((acc, card) => {
+        const name = card.name.trim();
+        if (!acc[name]) {
+            acc[name] = [];
+        }
+        acc[name].push(card);
+        return acc;
+    }, {});
+
+    // Select one random card from each group
+    const selectedCards = Object.values(groupedCards).map(group => group[Math.floor(Math.random() * group.length)]);
 
     // Return the selected cards in reverse order, followed by the start card
     return [...selectedCards.reverse(), startCard];
 }
+
 
 function Simple() {
     const navigate = useNavigate()
@@ -41,35 +45,38 @@ function Simple() {
         console.log('removing: ' + character.name)
         setLastDirection(direction)
         setLastValue(character.art)
-
+    
+        let newScore = score;
         if ((direction === 'right' && character.art) || (direction === 'left' && !character.art)) {
             if (character.name !== 'Start') {
-                setScore(score + 1)
+                newScore += 1;
+                setScore(newScore);
             }
         }
         setRemainingCards(remainingCards - 1)
         setCurrentIndex(index)
-
+    
         // Update the characters state to remove the swiped card
         setCharacters(characters => characters.filter(c => c.name !== character.name));
-
+    
         setTimeout(() => {
             if (index > 0 && characters[index - 1]) {
                 // Use the current property of the audioRef to access the audio object and update its src property
                 audioRef.current.src = characters[index - 1].audioo;
-
+    
                 // Add an event listener for the canplaythrough event and start playback when the event is triggered
                 audioRef.current.addEventListener('canplaythrough', () => {
                     audioRef.current.play();
                 });
             }
         }, 1500);
-
+    
         console.log(remainingCards)
         if (remainingCards === 1) {
-            navigate('/final-score', { state: { score: score } })
+            navigate('/final-score', { state: { score: newScore } })
         }
     }
+    
 
     const outOfFrame = (name) => {
         console.log(name + ' left the screen!')
